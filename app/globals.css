@@ -149,3 +149,125 @@
 .gold-glow {
   background: radial-gradient(circle at 30% 20%, rgba(200,162,74,0.25), transparent 60%);
 }
+
+/* ── Shadow variables — 01-DESIGN-SYSTEM.md § 5 ── */
+:root {
+  --shadow-soft: 0 16px 40px -20px rgba(20, 32, 28, 0.25);
+  --shadow-gold: 0 12px 30px -12px rgba(200, 162, 74, 0.35);
+  --shadow-strong: 0 24px 56px -18px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Typography Scale — 01-DESIGN-SYSTEM.md § 2 ── */
+
+/* Desktop (lg: 1024px+) — Heading & Display */
+.text-display-hero {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 68px;
+  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-h1 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 40px;
+  line-height: 1.0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 30px;
+  line-height: 1.0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-h3 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-h4 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 17px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Price — mono */
+.text-price-lg {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 34px;
+  line-height: 1.0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Body */
+.text-body-lg {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.text-body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-body-sm {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Utility — small */
+.text-caption {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 11.5px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.text-badge {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 10.5px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.text-micro {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 9.5px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+/* ── Mobile overrides (base: 320–768px) — 01-DESIGN-SYSTEM.md § 2 ── */
+@media (max-width: 1023px) {
+  .text-display-hero {
+    font-size: 38px;
+  }
+  .text-h1 {
+    font-size: 28px;
+  }
+  .text-h2 {
+    font-size: 22px;
+  }
+  .text-body {
+    font-size: 13.5px;
+  }
+}
