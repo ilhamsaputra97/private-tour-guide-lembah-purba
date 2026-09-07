@@ -79,7 +79,10 @@ export function BookingSection() {
                 />
                 <PaymentButton 
                   formData={{
-                    ...formData,
+                    nama: formData?.name,
+                    wa: formData?.whatsapp,
+                    tanggal: formData?.date,
+                    catatan: formData?.notes,
                     jumlah,
                     tripType,
                     nationality,

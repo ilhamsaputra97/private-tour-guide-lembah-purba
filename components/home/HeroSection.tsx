@@ -59,7 +59,7 @@ export function HeroSection() {
           transition={{ duration: 0.4, delay: 0.1 }}
         >
           <span className="text-badge inline-flex items-center rounded-full bg-white/10 px-3 py-1.5 text-sand/80">
-            TRIP PRIBADI • TNGGP
+            TRIP PRIBADI • Lembah Purba
           </span>
         </motion.div>
 
@@ -71,14 +71,10 @@ export function HeroSection() {
           animate="visible"
         >
           <motion.span className="block" variants={lineVariants}>
-            Rute sendiri.
+            <span className="font-bold uppercase text-gold">Hutan yang sama.</span>
           </motion.span>
           <motion.span className="block" variants={lineVariants}>
-            Pace sendiri.
-          </motion.span>
-          <motion.span className="block" variants={lineVariants}>
-            <span className="font-bold uppercase text-gold">RIMBA</span>{" "}
-            sendiri.
+            Pace yang berbeda.
           </motion.span>
         </motion.h1>
 
@@ -92,7 +88,7 @@ export function HeroSection() {
         >
           <p className="text-badge text-charcoal/60">PRIVATE GUIDE TRACKING</p>
           <p className="text-body-sm mt-1">
-            Guide khusus rombongan kamu • Rute 7KM • TNGGP, Situ Gunung
+            Guide khusus rombongan kamu • Rute 6KM Pulang Pergi • Lembah Purba, Situgunung, Taman Nasional Gunung Gede Pangrango
           </p>
         </motion.div>
 

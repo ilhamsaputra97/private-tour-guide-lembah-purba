@@ -20,7 +20,7 @@ export function BadgeSlotLimited({ className }: BadgeSlotLimitedProps) {
       </span>
 
       <span className="text-[11px] font-semibold text-gold">
-        SLOT TERBATAS / HARI
+        30 SLOT TERBATAS/HARI
       </span>
     </span>
   )

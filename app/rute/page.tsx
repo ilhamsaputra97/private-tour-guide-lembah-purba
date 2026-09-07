@@ -4,15 +4,15 @@ import { RouteSection } from "@/components/home/RouteSection"
 import { ImageIcon } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Rute 7KM Menuju Curug Kembar | Rimba Awal Expedition",
-  description: "Eksplorasi rute trekking 7KM melintasi Suspension Bridge, 8 jembatan gantung ekstrem, susur sungai, hingga Curug Kembar.",
+  title: "Rute 6KM Pulang Pergi | Private Tour Guide Lembah Purba Expedition",
+  description: "Eksplorasi rute trekking 6KM pulang pergi melintasi Suspension Bridge, 8 jembatan gantung ekstrem, susur sungai, hingga Curug Kembar.",
   keywords: ["rute curug kembar", "jalur trekking situ gunung", "peta lembah purba"],
 }
 
 export default function RutePage() {
   return (
     <main className="min-h-screen bg-sand pt-32 pb-20">
-      
+
       {/* ── SEO H1 (Visually Hidden since RouteSection has its own visual header) ── */}
       <h1 className="sr-only">RUTE 7KM MENUJU CURUG KEMBAR</h1>
 
@@ -32,8 +32,8 @@ export default function RutePage() {
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className="group relative aspect-square overflow-hidden rounded-[14px] bg-charcoal/10"
             >
               {/* Placeholder for images */}
@@ -47,7 +47,7 @@ export default function RutePage() {
 
         {/* ── CTA ── */}
         <div className="mt-20 text-center">
-          <Link 
+          <Link
             href="/#booking"
             className="inline-block rounded-full bg-charcoal px-10 py-5 text-[16px] font-bold text-sand transition-transform hover:scale-[1.03] active:scale-[0.97]"
           >

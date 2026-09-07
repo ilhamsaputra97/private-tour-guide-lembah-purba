@@ -4,15 +4,14 @@ import { SafetySection } from "@/components/home/SafetySection"
 import { ImageIcon } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Keselamatan & Persiapan Trekking | Rimba Awal Expedition",
-  description: "Cek persiapan fisik dan barang bawaan wajib sebelum trekking di TNGGP. Keselamatan adalah prioritas utama kami.",
-  keywords: ["persiapan trekking", "safety trekking", "barang bawaan lembah purba"],
+  title: "Panduan Keselamatan | Private Tour Guide Lembah Purba Expedition",
+  description: "Persiapan fisik, barang bawaan wajib, dan panduan keselamatan untuk trekking aman di lembah purba.",
+  keywords: ["persiapan trekking", "safety trekking", "barang bawaan trekking ekspedisi lembah purba"],
 }
 
 export default function SafetyPage() {
   return (
     <main className="min-h-screen bg-sandalt pt-32 pb-20">
-      
       {/* ── SEO H1 ── */}
       <h1 className="sr-only">KESELAMATAN & PERSIAPAN TREKKING</h1>
 
@@ -23,9 +22,9 @@ export default function SafetyPage() {
 
       {/* ── Flatlay & FAQ Khusus Safety ── */}
       <div className="mx-auto max-w-[1200px] px-5 md:px-8 mt-10">
-        
+
         <div className="grid gap-10 md:grid-cols-2 items-center">
-          
+
           {/* Flatlay Placeholder */}
           <div className="aspect-[4/3] rounded-[18px] bg-charcoal/10 flex flex-col items-center justify-center text-charcoal/40 overflow-hidden">
             <ImageIcon className="h-10 w-10 mb-3" />
@@ -35,7 +34,7 @@ export default function SafetyPage() {
           {/* FAQ Safety */}
           <div>
             <h2 className="text-h3 mb-6">Tanya Jawab <span className="text-gold">Keamanan</span></h2>
-            
+
             <div className="space-y-5">
               <div className="rounded-[14px] bg-white p-5 border border-charcoal/10">
                 <h4 className="font-semibold text-charcoal mb-2">Apakah ada asuransi?</h4>
@@ -62,7 +61,7 @@ export default function SafetyPage() {
 
         {/* ── CTA ── */}
         <div className="mt-20 text-center">
-          <Link 
+          <Link
             href="/#booking"
             className="inline-block rounded-full bg-gold px-10 py-5 text-[16px] font-bold text-charcoal transition-transform hover:scale-[1.03] active:scale-[0.97]"
           >

@@ -6,12 +6,12 @@ import { Wallet, CreditCard, QrCode, MessageCircle } from "lucide-react"
 const SOCIAL_LINKS = [
   {
     label: "WhatsApp",
-    href: "https://wa.me/6285123456789",
+    href: `https://wa.me/{${process.env.NEXT_PUBLIC_WA_ADMIN_NUMBER}}`,
     icon: MessageCircle,
   },
   {
     label: "Instagram",
-    href: "https://instagram.com/rimbaawal",
+    href: "https://instagram.com/saputra2660",
     icon: ({ className }: { className?: string }) => (
       // Lucide doesn't have an Instagram icon — use inline SVG
       <svg
@@ -32,7 +32,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Maps Basecamp",
-    href: "https://maps.app.goo.gl/example",
+    href: "https://maps.app.goo.gl/vXnWFnrZiCh3Xyw9A",
     icon: ({ className }: { className?: string }) => (
       // Map pin for basecamp location
       <svg
@@ -79,7 +79,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-2 text-[12px] text-sand/40">
-              © 2026 Rimba Awal Expedition
+              © 2026 Lembah Purba Expedition
             </p>
           </div>
 

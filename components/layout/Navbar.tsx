@@ -54,15 +54,13 @@ export function Navbar() {
         )}
       >
         <nav className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:h-[72px] md:px-8">
-          {/* ── Logo — "Lembah Purba" di atas, "Private Tour Guide" di bawah ── */}
+          {/* ── Logo ── */}
           <Link
             href="/"
-            className="group flex flex-col items-start leading-none"
-            aria-label="Lembah Purba — Private Tour Guide, kembali ke beranda"
+            className="group flex flex-col justify-center"
+            aria-label="Lembah Purba Expedition — Private Tour Guide, kembali ke beranda"
           >
-            <span
-              className="font-heading text-[18px] font-semibold tracking-[0.01em] text-charcoal transition-colors group-hover:text-charcoal/80 md:text-[20px]"
-            >
+            <span className="font-display text-[18px] tracking-wider text-charcoal transition-colors group-hover:text-gold md:text-[20px]">
               Lembah Purba
             </span>
             <span
