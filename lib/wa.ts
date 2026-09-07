@@ -12,6 +12,7 @@ interface WaLinkParams {
   paket: string
   total: number
   catatan: string
+  invoiceUrl?: string
 }
 
 export function buildWaLink(params: WaLinkParams): string {
@@ -30,7 +31,7 @@ export function buildWaLink(params: WaLinkParams): string {
 *Paket:* ${paket}
 *Total Pembayaran:* ${formatRupiah(total)}
 *Catatan Tambahan:* ${catatan}
-
+${params.invoiceUrl ? `\n*Link Invoice:* ${params.invoiceUrl}\n` : ''}
 Mohon info selanjutnya ya, Terima kasih!`
 
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`

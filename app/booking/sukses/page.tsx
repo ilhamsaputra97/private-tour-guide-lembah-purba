@@ -122,6 +122,17 @@ export default async function BookingSuksesPage({
           </div>
 
           <div className="flex flex-col gap-3">
+            {status === 'settlement' && booking.invoice_url && (
+              <a
+                href={booking.invoice_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="w-full rounded-full bg-charcoal py-4 font-semibold text-sand transition-transform hover:scale-[1.02] active:scale-[0.98] inline-block text-center"
+              >
+                Unduh Invoice (PDF)
+              </a>
+            )}
             <a
               href={waLink}
               target="_blank"

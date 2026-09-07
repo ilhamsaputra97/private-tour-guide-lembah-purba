@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { coreApi } from "@/lib/midtrans"
 import { getSupabaseAdmin } from "@/lib/supabase"
 import { buildWaLink } from "@/lib/wa"
+import { generateAndStoreInvoice } from "@/lib/invoice"
 
 export async function POST(req: NextRequest) {
   try {
@@ -44,6 +45,17 @@ export async function POST(req: NextRequest) {
 
     // Simulasi notifikasi admin WA jika sukses
     if (paymentStatus === "settlement" && booking) {
+      let invoiceUrl = booking.invoice_url
+      try {
+        invoiceUrl = await generateAndStoreInvoice(booking)
+        await supabaseAdmin
+          .from("bookings")
+          .update({ invoice_url: invoiceUrl })
+          .eq("order_id", order_id)
+      } catch (err) {
+        console.error("Failed to generate invoice:", err)
+      }
+
       const waLink = buildWaLink({
         nama: booking.nama,
         wa: booking.wa_number,
@@ -52,6 +64,7 @@ export async function POST(req: NextRequest) {
         paket: booking.trip_type === "private" ? "Private Trip" : "Open Trip",
         total: booking.total_estimasi,
         catatan: `${booking.catatan ?? "-"} | Status Bayar: LUNAS/DP (${booking.payment_option})`,
+        invoiceUrl
       })
       
       console.log("======================================")
