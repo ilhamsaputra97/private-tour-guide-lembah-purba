@@ -1,13 +1,15 @@
 // app/page.tsx
 // Homepage — Rimba Awal Expedition
-// Section 1: HeroSection, Section 2: PrivateGuideSpotlight,
-// Section 3: WhySection, Section 4: PackageComparisonSection
+// Sections 1-7: Hero, Spotlight, Why, Package, Route, Safety, FAQ
 
 import {
   HeroSection,
   PrivateGuideSpotlight,
   WhySection,
   PackageComparisonSection,
+  RouteSection,
+  SafetySection,
+  FAQSection,
 } from "@/components/home"
 
 export default function HomePage() {
@@ -17,6 +19,9 @@ export default function HomePage() {
       <PrivateGuideSpotlight />
       <WhySection />
       <PackageComparisonSection />
+      <RouteSection />
+      <SafetySection />
+      <FAQSection />
     </main>
   )
 }

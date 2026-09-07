@@ -81,3 +81,121 @@ export const OPEN_PACKAGE = {
     'Jas Hujan',
   ],
 }
+
+// ── Route Section — 05-PAGE-SPECS.md § Section 5 ──
+export const ROUTE_STEPS = [
+  {
+    step: 1,
+    title: 'Basecamp Check-in',
+    desc: 'Registrasi, safety briefing, dan cek perlengkapan sebelum masuk kawasan TNGGP.',
+    highlight: false,
+  },
+  {
+    step: 2,
+    title: 'Situ Gunung Suspension Bridge 243m',
+    desc: 'Jembatan gantung terpanjang di Asia Tenggara. View danau Situ Gunung dari ketinggian.',
+    highlight: true,
+  },
+  {
+    step: 3,
+    title: '8 Jembatan Gantung Ekstrem',
+    desc: 'Rangkaian jembatan gantung melintasi lembah dan sungai di tengah hutan hujan tropis.',
+    highlight: false,
+  },
+  {
+    step: 4,
+    title: 'Susur Sungai & Hutan Lumut',
+    desc: 'Trekking menyusuri sungai berbatu, dikelilingi pohon berlumut dan suara alam.',
+    highlight: false,
+  },
+  {
+    step: 5,
+    title: 'FINISH — Curug Kembar Megah',
+    desc: 'Air terjun kembar setinggi 50 meter. Spot makan siang dan istirahat sebelum balik.',
+    highlight: true,
+  },
+] as const
+
+export const ROUTE_BONUS = [
+  {
+    title: 'Keranjang Sultan',
+    desc: 'Spot foto ikonik di atas keranjang bambu raksasa dengan latar belakang hutan.',
+  },
+  {
+    title: 'Jembatan Merah IG',
+    desc: 'Jembatan kayu merah yang jadi spot favorit Instagram sepanjang jalur pulang.',
+  },
+] as const
+
+// ── Safety Section — 05-PAGE-SPECS.md § Section 6 ──
+export const SAFETY_CHECKLIST = [
+  {
+    title: 'Datang Tepat Waktu Sesuai Jadwal Kamu',
+    desc: 'Private Trip jadwalnya fleksibel, tapi tetap datang sesuai jam yang sudah disepakati dengan guide.',
+    icon: 'Clock' as const,
+  },
+  {
+    title: 'Sepatu Trekking Anti-Selip WAJIB',
+    desc: 'Jalur licin dan berbatu. Sandal jepit atau sneakers biasa sangat tidak disarankan.',
+    icon: 'Footprints' as const,
+  },
+  {
+    title: 'Baju Ganti + Kamera Waterproof',
+    desc: 'Pasti basah di susur sungai. Siapkan baju ganti dan lindungi elektronik dari air.',
+    icon: 'Shirt' as const,
+  },
+  {
+    title: 'Persiapan Fisik Ringan & Sarapan',
+    desc: 'Rute 7KM butuh stamina. Sarapan cukup dan tidur yang baik sebelum trekking.',
+    icon: 'Heart' as const,
+  },
+] as const
+
+export const SAFETY_WARNING = {
+  title: 'Zona Peringatan',
+  desc: 'Trek ini melibatkan jembatan gantung, tanjakan curam, dan susur sungai. TIDAK disarankan untuk peserta dengan riwayat penyakit jantung, phobia ketinggian berat, atau kondisi medis serius lainnya. Konsultasikan dengan dokter jika ragu.',
+}
+
+// ── FAQ Section — 05-PAGE-SPECS.md § Section 7 ──
+export const FAQ_ITEMS = [
+  {
+    q: 'Apakah cocok untuk pemula yang belum pernah trekking?',
+    a: 'Sangat cocok. Rute 7KM ini termasuk kategori ringan-menengah. Dengan Private Trip, guide bisa menyesuaikan pace sesuai kemampuan rombongan kamu.',
+  },
+  {
+    q: 'Apa bedanya Private Trip dan Open Trip?',
+    a: 'Private Trip: guide khusus untuk rombongan kamu, jadwal fleksibel, pace disesuaikan. Open Trip: gabung rombongan lain, jadwal fix, harga all-in lebih terjangkau.',
+  },
+  {
+    q: 'Saya takut ketinggian, apakah tetap bisa ikut?',
+    a: 'Jembatan gantung adalah bagian utama rute. Kalau phobia ketinggian berat, sangat tidak kami sarankan. Untuk ketakutan ringan, guide akan mendampingi dan memberi instruksi keamanan.',
+  },
+  {
+    q: 'Kalau hujan apakah tetap jalan?',
+    a: 'Ya, hujan ringan-sedang tetap jalan — jas hujan sudah termasuk. Kalau hujan deras disertai petir, guide akan menghentikan trekking sementara di shelter terdekat demi keselamatan.',
+  },
+  {
+    q: 'Bagaimana kebijakan refund dan reschedule?',
+    a: 'Private Trip punya kebijakan reschedule lebih fleksibel — bisa pindah tanggal hingga H-3 tanpa biaya tambahan. Refund berlaku sesuai ketentuan, dipotong biaya admin. Detail lengkap di halaman Paket.',
+  },
+  {
+    q: 'Berapa minimal orang untuk bisa booking?',
+    a: 'Minimal 1 orang. Untuk rombongan di bawah 4 orang, ada charge grup kecil Rp100.000 flat per rombongan, berlaku baik Private maupun Open Trip.',
+  },
+  {
+    q: 'Ada fasilitas apa aja di sepanjang jalur?',
+    a: 'Toilet di basecamp dan area Curug Kembar. Shelter berteduh di beberapa titik. Makan siang nasi liwet disajikan di area finish. Air mineral tersedia di basecamp dan sepanjang rute.',
+  },
+  {
+    q: 'Boleh bawa anak kecil?',
+    a: 'Usia minimal yang kami sarankan 7 tahun dengan kondisi fisik baik. Dengan Private Trip, guide bisa extra perhatian ke anak-anak dan pace lebih santai.',
+  },
+  {
+    q: 'Bedanya bayar Private Trip vs Open Trip gimana?',
+    a: 'Private Trip ada tambahan biaya guide privat flat Rp179.000 per rombongan (bukan per orang), di luar harga tiket dan layanan per orang. Open Trip nggak ada biaya tambahan ini.',
+  },
+  {
+    q: 'Pembayarannya aman nggak? Metode apa aja?',
+    a: 'Aman, kami pakai Midtrans — payment gateway resmi yang juga dipakai e-commerce besar di Indonesia. Bisa bayar QRIS, transfer virtual account, atau kartu debit/kredit. Kamu bisa pilih bayar DP 30% dulu atau langsung lunas.',
+  },
+] as const
