@@ -131,19 +131,19 @@ export function PrivateGuideSpotlight() {
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-price-lg text-gold">
-                Rp318.000
+                Rp350.000
                 <span className="text-body ml-1 text-sand/60">/orang</span>
               </p>
               <p className="text-body mt-1 text-sand/80">
-                + Rp179.000{" "}
+                + Rp300.000{" "}
                 <span className="text-sand/50">
                   biaya guide privat (flat per rombongan)
                 </span>
               </p>
               <p className="text-body-sm mt-3 text-sand/50">
-                Estimasi lengkap tergantung jumlah orang &amp; kewarganegaraan —{" "}
+                Estimasi lengkap tergantung jumlah orang —{" "}
                 <Link
-                  href="#estimasi-biaya"
+                  href="#booking"
                   className="text-gold underline underline-offset-2 hover:text-gold/80"
                 >
                   hitung di kalkulator

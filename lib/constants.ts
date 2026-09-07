@@ -51,12 +51,12 @@ export const WHY_CARDS = [
 export const PRIVATE_PACKAGE = {
   variant: 'private' as const,
   title: 'Private Trip',
-  price: 'mulai Rp318K/orang + Rp179K/rombongan',
+  price: 'Rp350K/orang + Rp300K/rombongan',
   badge: 'RECOMMENDED',
   ctaLabel: 'Pilih Private Trip',
   featured: true,
   inclusions: [
-    'Tiket Masuk TNGGP Resmi (WNI, sudah termasuk)',
+    'Tiket Masuk TNGGP Resmi (sudah termasuk)',
     'Guide privat khusus rombongan kamu (bukan dibagi)',
     'Jadwal keberangkatan fleksibel (nego jam mulai)',
     'Safety Harness Standar Internasional',
@@ -73,7 +73,7 @@ export const OPEN_PACKAGE = {
   ctaLabel: 'Pilih Open Trip',
   featured: false,
   inclusions: [
-    'Tiket Masuk TNGGP Resmi',
+    'Tiket Masuk TNGGP Resmi (sudah termasuk)',
     'Welcome Drink + Singkong Rebus',
     'Local Guide bersertifikat (dibagi rombongan gabungan)',
     'Safety Harness Standar Internasional',
@@ -146,7 +146,7 @@ export const SAFETY_CHECKLIST = [
   },
   {
     title: 'Persiapan Fisik Ringan & Sarapan',
-    desc: 'Rute 7KM butuh stamina. Sarapan cukup dan tidur yang baik sebelum trekking.',
+    desc: 'Rute 6KM butuh stamina. Sarapan cukup dan tidur yang baik sebelum trekking.',
     icon: 'Heart' as const,
   },
 ] as const
@@ -180,7 +180,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: 'Berapa minimal orang untuk bisa booking?',
-    a: 'Minimal 1 orang. Untuk rombongan di bawah 4 orang, ada charge grup kecil Rp100.000 flat per rombongan, berlaku baik Private maupun Open Trip.',
+    a: 'Minimal 1 orang. Untuk rombongan Private Trip di bawah 4 orang, ada charge grup kecil Rp100.000 flat per rombongan. Open Trip tidak ada charge ini.',
   },
   {
     q: 'Ada fasilitas apa aja di sepanjang jalur?',
@@ -192,7 +192,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: 'Bedanya bayar Private Trip vs Open Trip gimana?',
-    a: 'Private Trip ada tambahan biaya guide privat flat Rp179.000 per rombongan (bukan per orang), di luar harga tiket dan layanan per orang. Open Trip nggak ada biaya tambahan ini.',
+    a: 'Private Trip ada tambahan biaya guide privat flat Rp300.000 per rombongan (bukan per orang), di luar harga tiket dan layanan per orang. Open Trip nggak ada biaya tambahan ini.',
   },
   {
     q: 'Pembayarannya aman nggak? Metode apa aja?',

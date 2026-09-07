@@ -6,15 +6,15 @@ import { PackageCard } from "@/components/shared/PackageCard"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const metadata: Metadata = {
-  title: "Private Trip atau Open Trip? | Rimba Awal Expedition",
-  description: "Bandingkan paket trekking TNGGP Situ Gunung. Pilih Private Trip untuk privasi & fleksibilitas, atau Open Trip untuk paket hemat all-in.",
+  title: "Private Trip atau Open Trip? | Lembah Purba Expedition",
+  description: "Bandingkan paket trekking Lembah Purba. Pilih Private Trip untuk privasi & fleksibilitas, atau Open Trip untuk paket hemat all-in.",
 }
 
 export default function PaketPage() {
   return (
     <main className="min-h-screen bg-sandalt pt-32 pb-20">
       <div className="mx-auto max-w-[1200px] px-5 md:px-8">
-        
+
         {/* ── Header ── */}
         <div className="mb-12 text-center">
           <BadgeSection label="PILIHAN PAKET" variant="sand" />
@@ -30,13 +30,13 @@ export default function PaketPage() {
         <Tabs defaultValue="private" className="w-full">
           <div className="flex justify-center mb-10">
             <TabsList className="bg-white border border-charcoal/10 rounded-full h-auto p-1.5">
-              <TabsTrigger 
-                value="private" 
+              <TabsTrigger
+                value="private"
                 className="rounded-full px-6 py-2.5 text-[15px] font-semibold data-[state=active]:bg-charcoal data-[state=active]:text-sand"
               >
                 Private Trip
               </TabsTrigger>
-              <TabsTrigger 
+              <TabsTrigger
                 value="open"
                 className="rounded-full px-6 py-2.5 text-[15px] font-semibold data-[state=active]:bg-charcoal data-[state=active]:text-sand"
               >
@@ -67,10 +67,7 @@ export default function PaketPage() {
                     <strong className="block text-charcoal mb-1">Apakah pasti berangkat walau 1 orang?</strong>
                     Pasti. Private Trip tidak ada kuota minimal keberangkatan rombongan gabungan.
                   </div>
-                  <div>
-                    <strong className="block text-charcoal mb-1">Tiket WNA gimana?</strong>
-                    Jika ada WNA, tiket akan menyesuaikan tarif turis mancanegara (lihat rincian kalkulator).
-                  </div>
+
                   <div>
                     <strong className="block text-charcoal mb-1">Boleh bawa anjing/hewan peliharaan?</strong>
                     TNGGP melarang membawa hewan peliharaan demi ekosistem satwa liar di dalam kawasan.
@@ -118,7 +115,7 @@ export default function PaketPage() {
 
         {/* ── CTA Besar ── */}
         <div className="mt-20 text-center">
-          <Link 
+          <Link
             href="/#booking"
             className="inline-block rounded-full bg-charcoal px-10 py-5 text-[16px] font-bold text-sand transition-transform hover:scale-[1.03] active:scale-[0.97]"
           >

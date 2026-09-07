@@ -59,7 +59,7 @@ export function HeroSection() {
           transition={{ duration: 0.4, delay: 0.1 }}
         >
           <span className="text-badge inline-flex items-center rounded-full bg-white/10 px-3 py-1.5 text-sand/80">
-            TRIP PRIBADI • Lembah Purba
+            TRIP PRIBADI • Ekspedisi Lembah Purba
           </span>
         </motion.div>
 
