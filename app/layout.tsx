@@ -31,6 +31,8 @@ export const metadata: Metadata = {
   ],
 }
 
+import { Navbar, Footer } from "@/components/layout"
+
 export default function RootLayout({
   children,
 }: {
@@ -42,7 +44,9 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${plexMono.variable}`}
     >
       <body className="bg-sand text-charcoal antialiased">
+        <Navbar />
         {children}
+        <Footer />
         <Script
           src={
             process.env.MIDTRANS_IS_PRODUCTION === "true"
