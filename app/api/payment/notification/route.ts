@@ -1,10 +1,69 @@
-// app/api/payment/notification/route.ts
-// API Route — Webhook Midtrans (menerima notifikasi status pembayaran)
-// TODO: Implementasi di prompt berikutnya
+import { NextRequest, NextResponse } from "next/server"
+import { coreApi } from "@/lib/midtrans"
+import { getSupabaseAdmin } from "@/lib/supabase"
+import { buildWaLink } from "@/lib/wa"
 
-import { NextResponse } from 'next/server'
+export async function POST(req: NextRequest) {
+  try {
+    const notification = await req.json()
 
-export async function POST() {
-  // Placeholder — akan implementasi webhook handler Midtrans
-  return NextResponse.json({ error: 'Not implemented' }, { status: 501 })
+    // Verifikasi status asli ke Midtrans
+    const statusResponse = await coreApi.transaction.notification(notification)
+    const { order_id, transaction_status, fraud_status, transaction_id } = statusResponse
+
+    let paymentStatus: "pending" | "settlement" | "expire" | "cancel" | "deny" = "pending"
+
+    if (transaction_status === "capture" && fraud_status === "accept") {
+      paymentStatus = "settlement"
+    } else if (transaction_status === "settlement") {
+      paymentStatus = "settlement"
+    } else if (transaction_status === "expire") {
+      paymentStatus = "expire"
+    } else if (transaction_status === "cancel" || transaction_status === "deny") {
+      paymentStatus = "deny"
+    }
+
+    const supabaseAdmin = getSupabaseAdmin()
+
+    // Update status di Supabase
+    const { data: booking, error: updateError } = await supabaseAdmin
+      .from("bookings")
+      .update({ 
+        payment_status: paymentStatus, 
+        midtrans_transaction_id: transaction_id, 
+        updated_at: new Date().toISOString() 
+      })
+      .eq("order_id", order_id)
+      .select()
+      .single()
+
+    if (updateError) {
+      console.error("Supabase Update Error:", updateError)
+      return NextResponse.json({ error: "Gagal update status booking." }, { status: 500 })
+    }
+
+    // Simulasi notifikasi admin WA jika sukses
+    if (paymentStatus === "settlement" && booking) {
+      const waLink = buildWaLink({
+        nama: booking.nama,
+        wa: booking.wa_number,
+        jumlah: booking.jumlah_orang,
+        tanggal: booking.tanggal_trekking,
+        paket: booking.trip_type === "private" ? "Private Trip" : "Open Trip",
+        total: booking.total_estimasi,
+        catatan: `${booking.catatan ?? "-"} | Status Bayar: LUNAS/DP (${booking.payment_option})`,
+      })
+      
+      console.log("======================================")
+      console.log("NOTIFIKASI WA ADMIN BARU!")
+      console.log("Buka link ini untuk chat user:")
+      console.log(waLink)
+      console.log("======================================")
+    }
+
+    return NextResponse.json({ received: true })
+  } catch (error: any) {
+    console.error("Midtrans Notification Error:", error)
+    return NextResponse.json({ error: "Terjadi kesalahan webhook." }, { status: 500 })
+  }
 }

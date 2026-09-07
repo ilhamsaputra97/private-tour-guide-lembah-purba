@@ -77,7 +77,17 @@ export function BookingSection() {
                   paymentOption={paymentOption}
                   onPaymentOptionChange={setPaymentOption}
                 />
-                <PaymentButton amountToPay={amountToPay} />
+                <PaymentButton 
+                  formData={{
+                    ...formData,
+                    jumlah,
+                    tripType,
+                    nationality,
+                    dayType
+                  }} 
+                  total={total} 
+                  paymentOption={paymentOption} 
+                />
               </div>
             )}
           </div>
