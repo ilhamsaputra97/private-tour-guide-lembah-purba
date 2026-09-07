@@ -11,13 +11,11 @@ export function BookingSection() {
   // Lifted state for calculation and form
   const [jumlah, setJumlah] = useState(2)
   const [tripType, setTripType] = useState<"private" | "open">("private")
-  const [nationality, setNationality] = useState<"wni" | "wna">("wni")
-  const [dayType, setDayType] = useState<"weekday" | "weekend">("weekday")
 
   // State for form submission
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [formData, setFormData] = useState<ReservationFormData | null>(null)
-  
+
   // State for payment
   const [paymentOption, setPaymentOption] = useState<"dp" | "full">("full")
 
@@ -37,14 +35,14 @@ export function BookingSection() {
     }, 100)
   }
 
-  const total = computeTotal({ jumlah, nationality, tripType, dayType })
+  const total = computeTotal({ jumlah, tripType })
   const amountToPay = paymentOption === "dp" ? Math.round(total * 0.3) : total
 
   return (
     <section id="booking" className="bg-sandalt py-20 md:py-28">
       <div className="mx-auto max-w-[1200px] px-5 md:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
-          
+
           {/* Left Column: Kalkulator (Section 8) */}
           <div className="flex flex-col gap-10">
             <CostCalculator
@@ -52,10 +50,6 @@ export function BookingSection() {
               onJumlahChange={setJumlah}
               tripType={tripType}
               onTripTypeChange={setTripType}
-              nationality={nationality}
-              onNationalityChange={setNationality}
-              dayType={dayType}
-              onDayTypeChange={setDayType}
               onScrollToForm={handleScrollToForm}
             />
           </div>
@@ -65,7 +59,6 @@ export function BookingSection() {
             <ReservationForm
               jumlah={jumlah}
               tripType={tripType}
-              nationality={nationality}
               onSubmitSuccess={handleFormSubmit}
             />
 
@@ -77,7 +70,7 @@ export function BookingSection() {
                   paymentOption={paymentOption}
                   onPaymentOptionChange={setPaymentOption}
                 />
-                <PaymentButton 
+                <PaymentButton
                   formData={{
                     nama: formData?.name,
                     wa: formData?.whatsapp,
@@ -85,16 +78,14 @@ export function BookingSection() {
                     catatan: formData?.notes,
                     jumlah,
                     tripType,
-                    nationality,
-                    dayType
-                  }} 
-                  total={total} 
-                  paymentOption={paymentOption} 
+                  }}
+                  total={total}
+                  paymentOption={paymentOption}
                 />
               </div>
             )}
           </div>
-          
+
         </div>
       </div>
     </section>

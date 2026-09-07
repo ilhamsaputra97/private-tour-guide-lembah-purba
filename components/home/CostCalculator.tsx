@@ -1,10 +1,8 @@
 "use client"
 
 import { TripTypeToggle } from "@/components/shared/TripTypeToggle"
-import { NationalitySelector } from "@/components/shared/NationalitySelector"
-import { DayTypeSelector } from "@/components/shared/DayTypeSelector"
 import { formatRupiah } from "@/lib/utils"
-import { computeTotal, getBasePricePerOrang, PRICE } from "@/lib/pricing"
+import { computeTotal, PRICE } from "@/lib/pricing"
 import { AlertTriangle, Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -13,10 +11,6 @@ interface CostCalculatorProps {
   onJumlahChange: (val: number) => void
   tripType: "private" | "open"
   onTripTypeChange: (val: "private" | "open") => void
-  nationality: "wni" | "wna"
-  onNationalityChange: (val: "wni" | "wna") => void
-  dayType: "weekday" | "weekend"
-  onDayTypeChange: (val: "weekday" | "weekend") => void
   onScrollToForm: () => void
 }
 
@@ -25,20 +19,12 @@ export function CostCalculator({
   onJumlahChange,
   tripType,
   onTripTypeChange,
-  nationality,
-  onNationalityChange,
-  dayType,
-  onDayTypeChange,
   onScrollToForm,
 }: CostCalculatorProps) {
-  const total = computeTotal({ jumlah, nationality, tripType, dayType })
-  let basePerOrang = getBasePricePerOrang(nationality, tripType, dayType)
-  
-  if (nationality === "wni" && tripType === "private") {
-    basePerOrang += 32000 // Tiket masuk WNI khusus private
-  }
+  const total = computeTotal({ jumlah, tripType })
+  const basePerOrang = PRICE.ticketPerOrang
 
-  const smallGroupCharge = jumlah < 4 ? PRICE.smallGroupCharge : 0
+  const smallGroupCharge = tripType === 'private' && jumlah < 4 ? PRICE.smallGroupCharge : 0
   const guideFee = tripType === "private" ? PRICE.privateGuideFee : 0
 
   return (
@@ -59,14 +45,6 @@ export function CostCalculator({
         <div>
           <label className="text-body-sm mb-3 block font-semibold">Tipe Trip</label>
           <TripTypeToggle value={tripType} onChange={onTripTypeChange} />
-        </div>
-
-        <div>
-          <label className="text-body-sm mb-3 block font-semibold">Kewarganegaraan</label>
-          <NationalitySelector value={nationality} onChange={onNationalityChange} />
-          {nationality === "wna" && (
-            <DayTypeSelector value={dayType} onChange={onDayTypeChange} />
-          )}
         </div>
 
         <div>
@@ -94,10 +72,10 @@ export function CostCalculator({
       {/* ── Output Card (Sticky desktop styling if needed) ── */}
       <div className="mt-8 rounded-[14px] bg-charcoal p-5 text-sand md:sticky md:top-24">
         <h4 className="text-[15px] font-semibold text-gold">Rincian Biaya</h4>
-        
+
         <div className="mt-4 flex flex-col gap-3 text-[14px]">
           <div className="flex justify-between">
-            <span className="text-sand/70">Layanan + Tiket ({jumlah} x {formatRupiah(basePerOrang)})</span>
+            <span className="text-sand/70">Tiket TNGGP + Tiket Ekspedisi ({jumlah} x {formatRupiah(basePerOrang)})</span>
             <span>{formatRupiah(basePerOrang * jumlah)}</span>
           </div>
 

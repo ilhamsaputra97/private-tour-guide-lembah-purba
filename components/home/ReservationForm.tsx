@@ -19,14 +19,12 @@ export type ReservationFormData = z.infer<typeof reservationSchema>
 interface ReservationFormProps {
   jumlah: number
   tripType: "private" | "open"
-  nationality: "wni" | "wna"
   onSubmitSuccess: (data: ReservationFormData) => void
 }
 
 export function ReservationForm({
   jumlah,
   tripType,
-  nationality,
   onSubmitSuccess,
 }: ReservationFormProps) {
   const {
@@ -114,15 +112,11 @@ export function ReservationForm({
           </div>
         </div>
 
-        {/* Trip Type & Nationality Summary (Read-only) */}
+        {/* Trip Type Summary (Read-only) */}
         <div className="rounded-[12px] bg-sand p-4 text-[14px]">
-          <div className="flex justify-between border-b border-charcoal/10 pb-2">
+          <div className="flex justify-between pb-1">
             <span className="text-charcoal/60">Tipe Trip</span>
             <span className="font-semibold capitalize">{tripType} Trip</span>
-          </div>
-          <div className="flex justify-between pt-2">
-            <span className="text-charcoal/60">Kewarganegaraan</span>
-            <span className="font-semibold uppercase">{nationality}</span>
           </div>
         </div>
 

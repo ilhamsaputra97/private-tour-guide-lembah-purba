@@ -12,8 +12,6 @@ export async function POST(req: NextRequest) {
       tanggal,
       jumlah,
       tripType,
-      nationality,
-      dayType,
       catatan,
       paymentOption,
     } = body
@@ -21,9 +19,7 @@ export async function POST(req: NextRequest) {
     // 1. Hitung ulang total di server (JANGAN percaya input client)
     const totalServer = computeTotal({
       jumlah,
-      nationality,
       tripType,
-      dayType,
     })
 
     const orderId = `RAE-${Date.now()}`
@@ -38,8 +34,6 @@ export async function POST(req: NextRequest) {
       tanggal_trekking: tanggal,
       jumlah_orang: jumlah,
       trip_type: tripType,
-      nationality,
-      day_type: dayType ?? null,
       catatan: catatan ?? null,
       total_estimasi: totalServer,
       payment_option: paymentOption,
