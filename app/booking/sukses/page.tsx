@@ -6,7 +6,7 @@ import Link from "next/link"
 import { CheckCircle2, XCircle, Clock } from "lucide-react"
 
 export const metadata = {
-  title: "Status Booking | Rimba Awal Expedition",
+  title: "Status Booking | Lembah Purba Expedition",
 }
 
 export default async function BookingSuksesPage({
@@ -72,7 +72,7 @@ export default async function BookingSuksesPage({
     <main className="min-h-screen bg-sandalt py-24 md:py-32">
       <div className="mx-auto max-w-[600px] px-5">
         <div className="rounded-[24px] bg-white p-8 text-center shadow-sm md:p-12">
-          
+
           <div className="mb-6 flex justify-center">
             {status === "settlement" && <CheckCircle2 className="h-20 w-20 text-green-500" strokeWidth={1.5} />}
             {status === "pending" && <Clock className="h-20 w-20 text-amber-500" strokeWidth={1.5} />}
@@ -82,11 +82,11 @@ export default async function BookingSuksesPage({
           </div>
 
           <h1 className="mb-2 font-display text-3xl text-charcoal md:text-4xl">
-            {status === "settlement" ? "Pembayaran Berhasil!" : 
-             status === "pending" ? "Menunggu Pembayaran" : 
-             "Pembayaran Gagal"}
+            {status === "settlement" ? "Pembayaran Berhasil!" :
+              status === "pending" ? "Menunggu Pembayaran" :
+                "Pembayaran Gagal"}
           </h1>
-          
+
           <p className="mb-6 text-[15px] text-charcoal/70">
             Order ID: <span className="font-mono font-bold text-charcoal">{orderId}</span>
           </p>

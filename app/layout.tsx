@@ -20,14 +20,14 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Rimba Awal Expedition | Private Guide Trekking TNGGP",
+  title: "Lembah Purba Expedition | Private Guide Trekking TNGGP",
   description:
     "Trekking privat dengan guide khusus rombongan kamu. Rute sendiri, pace sendiri, di jantung hutan TNGGP, Situ Gunung Sukabumi.",
   keywords: [
     "private trip trekking",
     "guide privat situ gunung",
     "trekking TNGGP",
-    "rimba awal expedition",
+    "lembah Purba expedition",
   ],
 }
 
