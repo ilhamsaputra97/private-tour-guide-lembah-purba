@@ -34,3 +34,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Database Setup (Supabase)
+
+This project uses Supabase for managing bookings and payment statuses. You need to run the initial migration script to create the necessary tables and RLS policies.
+
+### How to Run Migration:
+1. Go to your [Supabase Dashboard](https://supabase.com/dashboard).
+2. Select your project.
+3. Open the **SQL Editor** from the left sidebar.
+4. Click on **New Query**.
+5. Copy the content of `supabase/migrations/001_create_bookings.sql` and paste it into the editor.
+6. Click **Run** to create the `bookings` table.
+
+Alternatively, if you are using Supabase CLI:
+```bash
+supabase db push
+```
