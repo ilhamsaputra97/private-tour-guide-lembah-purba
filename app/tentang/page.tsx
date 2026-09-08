@@ -10,9 +10,9 @@ export default function TentangPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-sandalt pt-32 pb-20">
       <div className="text-center px-5">
-        <h1 className="font-display text-4xl text-charcoal mb-4">Tentang Rimba Awal</h1>
+        <h1 className="font-display text-4xl text-charcoal mb-4">Tentang Private Tour Guide Lembah Purba Expedition</h1>
         <p className="text-charcoal/70 mb-8 max-w-md mx-auto">
-          Kami berdedikasi untuk memberikan pengalaman trekking privat yang paling eksklusif, aman, dan nyaman di TNGGP.
+          Kami berdedikasi untuk memberikan pengalaman trekking privat yang paling eksklusif, aman, dan nyaman di ekspedisi lembah purba.
         </p>
         <Link
           href="/"

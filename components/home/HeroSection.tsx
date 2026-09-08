@@ -5,6 +5,7 @@ import { cn } from "cn"
 import { motion, type Variants } from "framer-motion"
 import { Compass, CalendarClock } from "lucide-react"
 import { ButtonRA } from "@/components/shared/ButtonRA"
+import { GuestCheckModal } from "@/components/shared/GuestCheckModal"
 
 // ── Framer Motion variants — 06-COMPONENTS.md § Animasi ──
 // Hero H1: stagger per baris (bukan per kata)
@@ -94,26 +95,34 @@ export function HeroSection() {
 
         {/* Dual CTA */}
         <motion.div
-          className="mt-8 flex flex-wrap items-center gap-3"
+          className="mt-8 flex flex-col items-start gap-5"
           variants={fadeUpVariants}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.85 }}
         >
-          <Link href="/booking">
-            <ButtonRA variant="primary" size="lg">
-              Booking Guide Pribadi
-            </ButtonRA>
-          </Link>
-          <Link href="/paket">
-            <ButtonRA
-              variant="secondary"
-              size="lg"
-              className="border-sand/20 text-sand hover:bg-sand/10"
-            >
-              Lihat Open Trip
-            </ButtonRA>
-          </Link>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link href="/booking">
+              <ButtonRA variant="primary" size="lg">
+                Booking Guide Pribadi
+              </ButtonRA>
+            </Link>
+            <Link href="/paket">
+              <ButtonRA
+                variant="secondary"
+                size="lg"
+                className="border-sand/20 text-sand hover:bg-sand/10"
+              >
+                Lihat Open Trip
+              </ButtonRA>
+            </Link>
+          </div>
+
+          <GuestCheckModal>
+            <span className="text-sm text-sand/80 hover:text-sand transition-colors cursor-pointer inline-block">
+              Sudah pesan? <span className="font-semibold underline underline-offset-4 text-gold">Cek status historis mu di sini</span>
+            </span>
+          </GuestCheckModal>
         </motion.div>
 
         {/* Footer hero — location + schedule */}

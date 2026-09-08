@@ -29,7 +29,7 @@ export default function PrivateGuidePage() {
             GUIDE KHUSUS <span className="text-gold">ROMBONGAN KAMU</span>
           </h1>
           <p className="text-body mx-auto mt-4 max-w-2xl text-charcoal/70">
-            Nikmati kebebasan menjelajah hutan TNGGP tanpa harus terikat dengan jadwal dan kecepatan rombongan lain. Harga mulai dari Rp350K/orang + guide fee.
+            Nikmati kebebasan menjelajah hutan TNGGP tanpa harus terikat dengan jadwal dan kecepatan rombongan lain. Harga mulai dari Rp350K/orang + guide fee (flat Rp200K/grup).
           </p>
         </div>
 
