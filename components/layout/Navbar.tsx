@@ -16,6 +16,7 @@ const NAV_ITEMS: { label: string; href: string; highlight?: boolean }[] = [
   { label: "Paket", href: "/paket" },
   { label: "Rute", href: "/rute" },
   { label: "Safety", href: "/safety" },
+  { label: "Tentang Kami", href: "/tentang" },
 ]
 
 export function Navbar() {

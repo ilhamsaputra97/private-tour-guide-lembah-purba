@@ -33,12 +33,14 @@ export function PaymentButton({ formData, total, paymentOption }: PaymentButtonP
         throw new Error(data.error || "Gagal membuat transaksi")
       }
 
+      localStorage.setItem('rae_pending_order_id', data.orderId)
+
       window.snap.pay(data.snapToken, {
         onSuccess: () => {
-          window.location.href = `/booking/sukses?order_id=${data.orderId}`
+          window.location.reload()
         },
         onPending: () => {
-          window.location.href = `/booking/sukses?order_id=${data.orderId}`
+          window.location.reload()
         },
         onError: () => {
           alert("Pembayaran gagal, coba lagi ya.")

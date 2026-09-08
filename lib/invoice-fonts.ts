@@ -1,25 +1,22 @@
 import { Font } from '@react-pdf/renderer'
+import path from 'path'
 
-Font.register({
-  family: 'Fraunces',
-  fonts: [
-    { src: '/fonts/Fraunces-SemiBold.ttf', fontWeight: 600 },
-  ],
-})
+// Pada Next.js API Routes (Node.js), file sistem membutuhkan absolute path
+const fontDir = path.join(process.cwd(), 'public', 'fonts')
 
-Font.register({
-  family: 'Inter',
-  fonts: [
-    { src: '/fonts/Inter-Regular.ttf', fontWeight: 400 },
-    { src: '/fonts/Inter-Medium.ttf', fontWeight: 500 },
-    { src: '/fonts/Inter-SemiBold.ttf', fontWeight: 600 },
-  ],
-})
+  Font.register({
+    family: 'Fraunces',
+    src: path.join(fontDir, 'Fraunces-SemiBold.ttf'),
+    fontWeight: 600,
+  })
 
-Font.register({
-  family: 'IBM Plex Mono',
-  fonts: [
-    { src: '/fonts/IBMPlexMono-Medium.ttf', fontWeight: 500 },
-    { src: '/fonts/IBMPlexMono-Bold.ttf', fontWeight: 700 },
-  ],
-})
+  Font.register({
+    family: 'Inter',
+    fonts: [
+      { src: path.join(fontDir, 'Inter-Regular.ttf'), fontWeight: 400 },
+      { src: path.join(fontDir, 'Inter-Medium.ttf'), fontWeight: 500 },
+      { src: path.join(fontDir, 'Inter-SemiBold.ttf'), fontWeight: 600 },
+    ],
+  })
+
+  // Dihapus karena IBM Plex Mono memicu error DataView pada react-pdf

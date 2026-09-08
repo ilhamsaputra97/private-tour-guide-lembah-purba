@@ -21,7 +21,7 @@ export default function PrivateGuidePage() {
   return (
     <main className="min-h-screen bg-sand pt-32 pb-20">
       <div className="mx-auto max-w-[1200px] px-5 md:px-8">
-        
+
         {/* ── Hero Kecil ── */}
         <div className="mb-16 text-center">
           <BadgeSection label="PRIVATE GUIDE" variant="sand" />
@@ -95,14 +95,14 @@ export default function PrivateGuidePage() {
         {/* ── Testimoni Placeholder ── */}
         <div className="mb-20 text-center">
           <p className="text-body mx-auto max-w-3xl italic text-charcoal/80">
-            "Awalnya ragu bawa anak-anak trekking 7KM, tapi karena ambil Private Trip, guide-nya sabar banget nungguin anak-anak istirahat. Nggak ngerasa dikejar waktu sama sekali. The best!"
+            "Awalnya ragu bawa anak-anak trekking 6KM, tapi karena ambil Private Trip, guide-nya sabar banget nungguin anak-anak istirahat. Nggak ngerasa dikejar waktu sama sekali. The best!"
           </p>
           <p className="mt-4 font-bold text-gold">— Keluarga Bpk. Andi, Jakarta</p>
         </div>
 
         {/* ── CTA Besar ── */}
         <div className="text-center">
-          <Link 
+          <Link
             href="/#booking"
             className="inline-block rounded-full bg-gold px-10 py-5 text-[16px] font-bold text-charcoal transition-transform hover:scale-[1.03] active:scale-[0.97]"
           >

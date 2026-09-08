@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { label: "Paket", href: "/paket" },
   { label: "Rute", href: "/rute" },
   { label: "Safety", href: "/safety" },
+  { label: "Tentang Kami", href: "/tentang" },
 ] as const
 
 interface MobileMenuProps {
@@ -82,23 +83,6 @@ export function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
             animate="visible"
             exit="exit"
           >
-            {/* ── CTA Private Guide — PALING ATAS, tombol besar gold ── */}
-            <motion.div
-              className="mb-8"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.4, delay: 0.15, ease: EASE_OUT },
-              }}
-            >
-              <Link href="/private-guide" onClick={onClose}>
-                <ButtonRA variant="primary" size="lg" className="w-full text-[16px]">
-                  PRIVATE GUIDE
-                </ButtonRA>
-              </Link>
-            </motion.div>
-
             {/* ── Nav links ── */}
             <nav className="flex flex-col gap-1">
               {NAV_ITEMS.map(({ label, href }, i) => {

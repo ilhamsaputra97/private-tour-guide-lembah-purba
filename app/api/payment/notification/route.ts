@@ -26,12 +26,31 @@ export async function POST(req: NextRequest) {
 
     const supabaseAdmin = getSupabaseAdmin()
 
+    let invoiceUrl: string | undefined = undefined
+
+    if (paymentStatus === "settlement") {
+      const { data: existingBooking } = await supabaseAdmin
+        .from("bookings")
+        .select("*")
+        .eq("order_id", order_id)
+        .single()
+        
+      if (existingBooking) {
+        try {
+          invoiceUrl = await generateAndStoreInvoice(existingBooking)
+        } catch (err) {
+          console.error("Failed to generate invoice:", err)
+        }
+      }
+    }
+
     // Update status di Supabase
     const { data: booking, error: updateError } = await supabaseAdmin
       .from("bookings")
       .update({ 
         payment_status: paymentStatus, 
-        midtrans_transaction_id: transaction_id, 
+        midtrans_transaction_id: transaction_id,
+        ...(invoiceUrl ? { invoice_url: invoiceUrl } : {}),
         updated_at: new Date().toISOString() 
       })
       .eq("order_id", order_id)
@@ -45,16 +64,6 @@ export async function POST(req: NextRequest) {
 
     // Simulasi notifikasi admin WA jika sukses
     if (paymentStatus === "settlement" && booking) {
-      let invoiceUrl = booking.invoice_url
-      try {
-        invoiceUrl = await generateAndStoreInvoice(booking)
-        await supabaseAdmin
-          .from("bookings")
-          .update({ invoice_url: invoiceUrl })
-          .eq("order_id", order_id)
-      } catch (err) {
-        console.error("Failed to generate invoice:", err)
-      }
 
       const waLink = buildWaLink({
         nama: booking.nama,
