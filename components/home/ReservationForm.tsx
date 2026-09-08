@@ -8,6 +8,7 @@ import { CalendarIcon, Users, FileText } from "lucide-react"
 
 const reservationSchema = z.object({
   name: z.string().min(2, "Nama minimal 2 karakter"),
+  email: z.string().email("Format email tidak valid"),
   whatsapp: z.string().min(9, "Nomor WhatsApp tidak valid"),
   date: z.string().min(1, "Pilih tanggal trekking"),
   jumlah: z.number().min(1).max(30),
@@ -68,6 +69,18 @@ export function ReservationForm({
             className="w-full rounded-[12px] border border-charcoal/15 bg-sand px-4 py-3 outline-none transition-colors focus:border-gold"
           />
           {errors.name && <p className="mt-1 text-[13px] text-red-500">{errors.name.message}</p>}
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="text-body-sm mb-2 block font-semibold">Alamat Email</label>
+          <input
+            {...register("email")}
+            type="email"
+            placeholder="nama@email.com"
+            className="w-full rounded-[12px] border border-charcoal/15 bg-sand px-4 py-3 outline-none transition-colors focus:border-gold"
+          />
+          {errors.email && <p className="mt-1 text-[13px] text-red-500">{errors.email.message}</p>}
         </div>
 
         {/* WhatsApp */}

@@ -8,6 +8,7 @@ import { PaymentMethodSummary } from "@/components/payment/PaymentMethodSummary"
 import { PaymentButton } from "@/components/payment/PaymentButton"
 import { PendingPaymentCard } from "@/components/payment/PendingPaymentCard"
 import { computeTotal } from "@/lib/pricing"
+import { GuestCheckModal } from "@/components/shared/GuestCheckModal"
 
 function BookingContent() {
   const searchParams = useSearchParams()
@@ -72,8 +73,23 @@ function BookingContent() {
           />
         </div>
       ) : (
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
-          {/* Left Column: Kalkulator (Section 8) */}
+        <>
+          <div className="mb-8 rounded-[12px] border border-charcoal/10 bg-white/60 p-4 text-center sm:flex sm:items-center sm:justify-between sm:text-left shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+            <div className="text-charcoal/80 text-sm">
+              <span className="mr-2">💡</span>
+              Apakah Anda sudah melakukan pemesanan sebelumnya?
+            </div>
+            <div className="mt-3 sm:mt-0">
+              <GuestCheckModal>
+                <span className="inline-block rounded-md bg-charcoal/5 px-4 py-2 text-sm font-medium text-charcoal hover:bg-charcoal/10 transition-colors cursor-pointer">
+                  Cek Status Historismu
+                </span>
+              </GuestCheckModal>
+            </div>
+          </div>
+
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
+            {/* Left Column: Kalkulator (Section 8) */}
           <div className="flex flex-col gap-10 lg:sticky lg:top-24">
             <CostCalculator
               jumlah={jumlah}
@@ -106,6 +122,7 @@ function BookingContent() {
                   <PaymentButton
                     formData={{
                       nama: formData?.name,
+                      email: formData?.email,
                       wa: formData?.whatsapp,
                       tanggal: formData?.date,
                       catatan: formData?.notes,
@@ -124,6 +141,7 @@ function BookingContent() {
             )}
           </div>
         </div>
+        </>
       )}
     </div>
   )

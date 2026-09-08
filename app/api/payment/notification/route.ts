@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
         .select("*")
         .eq("order_id", order_id)
         .single()
-        
+
       if (existingBooking) {
         try {
           invoiceUrl = await generateAndStoreInvoice(existingBooking)
@@ -47,11 +47,11 @@ export async function POST(req: NextRequest) {
     // Update status di Supabase
     const { data: booking, error: updateError } = await supabaseAdmin
       .from("bookings")
-      .update({ 
-        payment_status: paymentStatus, 
+      .update({
+        payment_status: paymentStatus,
         midtrans_transaction_id: transaction_id,
         ...(invoiceUrl ? { invoice_url: invoiceUrl } : {}),
-        updated_at: new Date().toISOString() 
+        updated_at: new Date().toISOString()
       })
       .eq("order_id", order_id)
       .select()
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
         catatan: `${booking.catatan ?? "-"} | Status Bayar: LUNAS/DP (${booking.payment_option})`,
         invoiceUrl
       })
-      
+
       console.log("======================================")
       console.log("NOTIFIKASI WA ADMIN BARU!")
       console.log("Buka link ini untuk chat user:")

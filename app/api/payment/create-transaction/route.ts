@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const {
       nama,
+      email,
       wa,
       tanggal,
       jumlah,
@@ -22,7 +23,7 @@ export async function POST(req: NextRequest) {
       tripType,
     })
 
-    const orderId = `RAE-${Date.now()}`
+    const orderId = `IPTGLPE-${Date.now()}`
     const amountToPay = paymentOption === "dp" ? Math.round(totalServer * 0.3) : totalServer
 
     // 2. Simpan booking ke Supabase dengan status pending
@@ -30,6 +31,7 @@ export async function POST(req: NextRequest) {
     const { error: insertError } = await supabaseAdmin.from("bookings").insert({
       order_id: orderId,
       nama,
+      email,
       wa_number: wa,
       tanggal_trekking: tanggal,
       jumlah_orang: jumlah,
@@ -54,6 +56,7 @@ export async function POST(req: NextRequest) {
       },
       customer_details: {
         first_name: nama,
+        email: email,
         phone: wa,
       },
       item_details: [
