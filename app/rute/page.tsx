@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { RouteSection } from "@/components/home/RouteSection"
 import { ImageIcon } from "lucide-react"
 
@@ -10,11 +11,21 @@ export const metadata: Metadata = {
 }
 
 export default function RutePage() {
+  const images = [
+    { src: "/images/jembatan-lembah-purba.jpg", alt: "Jembatan Lembah Purba" },
+    { src: "/images/sebelum-jembatan-ki-haji.jpg", alt: "Pemandangan di Jembatan Ki Haji" },
+    { src: "/images/sebelum-jembatan-ki-enteh.jpg", alt: "Pemandangan di Jembatan Ki Enteh" },
+    { src: "/images/curug kembar.webp", alt: "Curug Kembar" },
+    { src: "/images/sesudah-jembatan-batu-tb.jpg", alt: "Pemandangan di Jembatan Batu TB" },
+    { src: "/images/curug kembar - plang lembah purba - vanderkhoe.webp", alt: "Vanderkhoe" },
+    { src: "/images/curug kembar - plang lembah purba.webp", alt: "Plang Lembah Purba" },
+  ]
+
   return (
     <main className="min-h-screen bg-sand pt-32 pb-20">
 
       {/* ── SEO H1 (Visually Hidden since RouteSection has its own visual header) ── */}
-      <h1 className="sr-only">RUTE 7KM MENUJU CURUG KEMBAR</h1>
+      <h1 className="sr-only">RUTE 6KM MENUJU CURUG KEMBAR PULANG PERGI</h1>
 
       {/* ── Reuse RouteSection ── */}
       <div className="-mt-16">
@@ -30,17 +41,25 @@ export default function RutePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {images.map((img, i) => (
             <div
               key={i}
               className="group relative aspect-square overflow-hidden rounded-[14px] bg-charcoal/10"
             >
-              {/* Placeholder for images */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-charcoal/30">
-                <ImageIcon className="h-8 w-8 mb-2" />
-                <span className="text-xs font-semibold">Foto {i}</span>
-              </div>
+              {img.src ? (
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-charcoal/30">
+                  <ImageIcon className="h-8 w-8 mb-2" />
+                  <span className="text-xs font-semibold">{img.alt}</span>
+                </div>
+              )}
             </div>
           ))}
         </div>
