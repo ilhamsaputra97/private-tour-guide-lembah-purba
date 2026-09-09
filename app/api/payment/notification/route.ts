@@ -75,17 +75,10 @@ export async function POST(req: NextRequest) {
         catatan: `${booking.catatan ?? "-"} | Status Bayar: LUNAS/DP (${booking.payment_option})`,
         invoiceUrl
       })
-
-      console.log("======================================")
-      console.log("NOTIFIKASI WA ADMIN BARU!")
-      console.log("Buka link ini untuk chat user:")
-      console.log(waLink)
-      console.log("======================================")
     }
 
     return NextResponse.json({ received: true })
   } catch (error: any) {
-    console.error("Midtrans Notification Error:", error)
     return NextResponse.json({ error: "Terjadi kesalahan webhook." }, { status: 500 })
   }
 }

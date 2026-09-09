@@ -19,14 +19,14 @@ export async function sendOTP(toEmail: string, otpCode: string, userName: string
   }
 
   const mailOptions = {
-    from: `"Rimba Awal Expedition" <${process.env.EMAIL_USER}>`,
+    from: `"Private Tour Guide Lembah Purba Expedition" <${process.env.EMAIL_USER}>`,
     to: toEmail,
     subject: `Kode OTP Cek Pesanan Anda: ${otpCode}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px;">
         <h2 style="color: #262c2e; margin-bottom: 20px;">Halo, ${userName || "Tamu"}!</h2>
         <p style="color: #4b5563; font-size: 16px; line-height: 1.5;">
-          Anda menerima email ini karena ada permintaan untuk mengecek status pesanan perjalanan di <strong>Rimba Awal Expedition</strong> yang terhubung dengan email ini.
+          Anda menerima email ini karena ada permintaan untuk mengecek status pesanan perjalanan di <strong>Lembah Purba Expedition</strong> yang terhubung dengan email ini.
         </p>
         <p style="color: #4b5563; font-size: 16px; line-height: 1.5;">
           Berikut adalah kode OTP rahasia Anda:
@@ -40,7 +40,7 @@ export async function sendOTP(toEmail: string, otpCode: string, userName: string
         <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;" />
         <p style="color: #9ca3af; font-size: 12px; text-align: center;">
           Email ini dibuat secara otomatis. Harap tidak membalas email ini.<br>
-          &copy; ${new Date().getFullYear()} Rimba Awal Expedition
+          &copy; ${new Date().getFullYear()} Private Tour Guide Lembah Purba Expedition
         </p>
       </div>
     `,
@@ -49,10 +49,8 @@ export async function sendOTP(toEmail: string, otpCode: string, userName: string
   // Kirim email
   try {
     const info = await transporter.sendMail(mailOptions)
-    console.log(`[Nodemailer] Email berhasil terkirim ke: ${toEmail}. Message ID: ${info.messageId}`)
     return info
   } catch (error) {
-    console.error("[Nodemailer] Gagal mengirim email:", error)
     throw error
   }
 }
