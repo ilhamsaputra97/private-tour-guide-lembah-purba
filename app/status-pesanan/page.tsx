@@ -13,7 +13,30 @@ function StatusContent() {
     const data = sessionStorage.getItem("guest_booking_data")
     if (data) {
       try {
-        setBookingData(JSON.parse(data))
+        const parsedData = JSON.parse(data)
+        if (parsedData && parsedData.order_id) {
+          // Fetch data terbaru dari database
+          fetch(`/api/guest/status?order_id=${parsedData.order_id}`)
+            .then(res => res.json())
+            .then(json => {
+              if (json.success) {
+                setBookingData(json.data)
+                sessionStorage.setItem("guest_booking_data", JSON.stringify(json.data))
+              } else {
+                setBookingData(null)
+                sessionStorage.removeItem("guest_booking_data")
+              }
+            })
+            .catch(err => {
+              console.error("Fetch latest booking failed", err)
+              setBookingData(null)
+              sessionStorage.removeItem("guest_booking_data")
+            })
+            .finally(() => {
+              setLoading(false)
+            })
+          return // Tunggu fetch selesai untuk update loading state
+        }
       } catch (e) {
         console.error("Failed to parse booking data", e)
       }
