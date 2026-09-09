@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getSupabaseAdmin } from "@/lib/supabase"
+import bcrypt from 'bcryptjs'
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,27 +12,33 @@ export async function POST(req: NextRequest) {
 
     const supabaseAdmin = getSupabaseAdmin()
 
-    // 1. Validasi OTP di tabel otp_tokens
+    // 1. Ambil token OTP berdasarkan email (ambil yang terbaru/belum kedaluwarsa)
     const { data: tokens, error: checkError } = await supabaseAdmin
       .from("otp_tokens")
       .select("*")
       .eq("email", email)
-      .eq("otp_code", otp)
+      .order("created_at", { ascending: false }) // Pastikan mengambil yang terbaru
 
     if (checkError) {
       console.error("Supabase Query Error:", checkError)
       return NextResponse.json({ error: "Gagal memverifikasi OTP." }, { status: 500 })
     }
 
-    // Jika tidak ada token cocok
     if (!tokens || tokens.length === 0) {
-      return NextResponse.json({ error: "Kode OTP salah." }, { status: 400 })
+      return NextResponse.json({ error: "Kode OTP salah atau belum diminta." }, { status: 400 })
     }
 
+    const token = tokens[0]
+
     // Cek kedaluwarsa
-    const token = tokens[0] // Asumsi ambil yang pertama ketemu
     if (new Date(token.expires_at) < new Date()) {
       return NextResponse.json({ error: "Kode OTP sudah kedaluwarsa." }, { status: 400 })
+    }
+
+    // Verifikasi hash OTP
+    const isMatch = await bcrypt.compare(otp, token.otp_hash || token.otp_code)
+    if (!isMatch) {
+      return NextResponse.json({ error: "Kode OTP salah." }, { status: 400 })
     }
 
     // 2. Jika valid, hapus token agar tidak bisa dipakai 2x
