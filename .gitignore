@@ -40,4 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-app/dev-preview/*
+app/dev-preview/*AGENTS.md
+CLAUDE.md
