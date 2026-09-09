@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { SafetySection } from "@/components/home/SafetySection"
 import { ImageIcon } from "lucide-react"
 
@@ -26,9 +27,13 @@ export default function SafetyPage() {
         <div className="grid gap-10 md:grid-cols-2 items-center">
 
           {/* Flatlay Placeholder */}
-          <div className="aspect-[4/3] rounded-[18px] bg-charcoal/10 flex flex-col items-center justify-center text-charcoal/40 overflow-hidden">
-            <ImageIcon className="h-10 w-10 mb-3" />
-            <span className="font-semibold text-sm">Foto Flatlay Perlengkapan</span>
+          <div className="relative group aspect-[4/3] rounded-[18px] bg-charcoal/10 flex flex-col items-center justify-center text-charcoal/40 overflow-hidden">
+            <Image
+              src="/images/pristine_climbing_harness.webp"
+              alt="Pristine Climbing Harness"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+            />
           </div>
 
           {/* FAQ Safety */}
