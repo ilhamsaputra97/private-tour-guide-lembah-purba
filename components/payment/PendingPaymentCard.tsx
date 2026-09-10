@@ -135,12 +135,19 @@ export function PendingPaymentCard({
         >
           Chat Admin
         </a>
-        {isFailed && (
+        {isFailed ? (
           <button
             onClick={handleNewBooking}
             className="w-full rounded-full bg-charcoal py-4 font-semibold text-sand transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
             Buat Booking Baru
+          </button>
+        ) : (
+          <button
+            onClick={handleNewBooking}
+            className="w-full rounded-full border border-red-500 py-4 font-semibold text-red-500 transition-colors hover:bg-red-50"
+          >
+            Batal & Buat Booking Baru
           </button>
         )}
       </div>
