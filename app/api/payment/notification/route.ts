@@ -3,6 +3,7 @@ import { coreApi } from "@/lib/midtrans"
 import { getSupabaseAdmin } from "@/lib/supabase"
 import { buildWaLink } from "@/lib/wa"
 import { generateAndStoreInvoice } from "@/lib/invoice"
+import { sendInvoiceEmail } from "@/lib/mailer"
 
 export async function POST(req: NextRequest) {
   try {
@@ -38,8 +39,17 @@ export async function POST(req: NextRequest) {
       if (existingBooking) {
         try {
           invoiceUrl = await generateAndStoreInvoice(existingBooking)
+          // Kirim email invoice ke pelanggan
+          if (invoiceUrl && existingBooking.email) {
+            await sendInvoiceEmail(
+              existingBooking.email,
+              existingBooking.nama,
+              order_id,
+              invoiceUrl
+            )
+          }
         } catch (err) {
-          console.error("Failed to generate invoice:", err)
+          console.error("Failed to generate/send invoice:", err)
         }
       }
     }

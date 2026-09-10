@@ -161,18 +161,61 @@ export function GuestCheckModal({ children }: { children: React.ReactNode }) {
           </form>
         ) : (
           <form onSubmit={handleVerify} className="space-y-4 pt-4">
-            <div className="space-y-2">
-              <Label htmlFor="otp" className="text-charcoal font-medium">Kode OTP (6 digit)</Label>
-              <Input
-                id="otp"
-                type="text"
-                maxLength={6}
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                placeholder="Misal: 123456"
-                className="border-charcoal/20 focus:border-gold focus:ring-gold bg-white font-mono tracking-[0.3em] text-center text-lg"
-                required
-              />
+            <div className="space-y-4">
+              <Label className="text-charcoal font-medium block text-center">Kode OTP (6 digit)</Label>
+              <div className="flex gap-2 justify-center" onPaste={(e) => {
+                e.preventDefault()
+                const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6)
+                if (pasted) {
+                  setOtp(pasted)
+                  const nextIndex = Math.min(pasted.length, 5)
+                  document.getElementById(`otp-${nextIndex}`)?.focus()
+                }
+              }}>
+                {[0, 1, 2, 3, 4, 5].map((index) => {
+                  const val = otp[index] || ""
+                  return (
+                    <input
+                      key={index}
+                      id={`otp-${index}`}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={val}
+                      className="w-12 h-14 text-center text-2xl font-bold bg-white border-2 border-charcoal/10 rounded-xl focus:border-gold focus:ring-4 focus:ring-gold/20 outline-none transition-all text-charcoal shadow-sm"
+                      onChange={(e) => {
+                        const char = e.target.value.replace(/\D/g, "")
+                        if (!char && !e.target.value) return // Handled by backspace
+                        
+                        const newOtp = otp.split("")
+                        newOtp[index] = char.slice(-1)
+                        setOtp(newOtp.join("").slice(0, 6))
+                        
+                        if (char && index < 5) {
+                          document.getElementById(`otp-${index + 1}`)?.focus()
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Backspace") {
+                          const newOtp = otp.split("")
+                          if (newOtp[index]) {
+                            newOtp[index] = ""
+                            setOtp(newOtp.join(""))
+                          } else if (index > 0) {
+                            newOtp[index - 1] = ""
+                            setOtp(newOtp.join(""))
+                            document.getElementById(`otp-${index - 1}`)?.focus()
+                          }
+                        } else if (e.key === "ArrowLeft" && index > 0) {
+                          document.getElementById(`otp-${index - 1}`)?.focus()
+                        } else if (e.key === "ArrowRight" && index < 5) {
+                          document.getElementById(`otp-${index + 1}`)?.focus()
+                        }
+                      }}
+                    />
+                  )
+                })}
+              </div>
             </div>
             <div className="pt-2">
               <ButtonRA type="submit" variant="primary" className="w-full justify-center" disabled={loading}>
