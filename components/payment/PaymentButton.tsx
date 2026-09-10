@@ -19,16 +19,16 @@ export function PaymentButton({ formData, total, paymentOption }: PaymentButtonP
 
   const handlePay = async () => {
     setIsLoading(true)
-    
+
     try {
       const res = await fetch("/api/payment/create-transaction", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, total, paymentOption }),
       })
-      
+
       const data = await res.json()
-      
+
       if (!res.ok) {
         throw new Error(data.error || "Gagal membuat transaksi")
       }
@@ -47,6 +47,7 @@ export function PaymentButton({ formData, total, paymentOption }: PaymentButtonP
           setIsLoading(false)
         },
         onClose: () => {
+          localStorage.removeItem('rae_pending_order_id')
           setIsLoading(false)
         },
       })
