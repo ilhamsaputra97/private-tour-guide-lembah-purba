@@ -46,9 +46,20 @@ export function PaymentButton({ formData, total, paymentOption }: PaymentButtonP
           alert("Pembayaran gagal, coba lagi ya.")
           setIsLoading(false)
         },
-        onClose: () => {
+        onClose: async () => {
           localStorage.removeItem('rae_pending_order_id')
           setIsLoading(false)
+          
+          // Hapus pesanan "sampah" dari database agar tidak muncul di histori sebagai "Pending"
+          try {
+            await fetch('/api/payment/cancel-abandoned', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ orderId: data.orderId })
+            })
+          } catch (e) {
+            console.error("Gagal menghapus pesanan abandoned", e)
+          }
         },
       })
     } catch (err: any) {
