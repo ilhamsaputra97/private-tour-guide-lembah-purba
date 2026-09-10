@@ -20,13 +20,20 @@ export function PendingPaymentCard({
   const [isLoading, setIsLoading] = useState(true)
 
   async function fetchStatus() {
-    const { data } = await supabaseBrowser
+    const { data, error } = await supabaseBrowser
       .from("bookings")
       .select("*")
       .eq("order_id", orderId)
       .single()
 
-    if (!data) return
+    if (error || !data) {
+      // Jika data tidak ditemukan di database (mungkin sudah dihapus),
+      // kita harus menghapus localStorage agar tidak loading terus-menerus.
+      localStorage.removeItem("rae_pending_order_id")
+      onResolved()
+      return
+    }
+    
     setBooking(data)
     setIsLoading(false)
 
