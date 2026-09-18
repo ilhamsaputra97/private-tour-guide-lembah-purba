@@ -68,7 +68,7 @@ export function PackageComparisonSection() {
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
           <p className="text-body-sm text-charcoal/60">
             Charge grup kecil Rp100K berlaku untuk rombongan di bawah 4
-            orang, baik Private maupun Open Trip.
+            orang, untuk Private trip.
           </p>
         </motion.div>
       </div>

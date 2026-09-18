@@ -45,7 +45,7 @@ export function RouteSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
         >
-          <BadgeSection label="RUTE 7KM" variant="sand" />
+          <BadgeSection label="RUTE 6KM" variant="sand" />
 
           <h2 className="text-h1 mt-4 max-w-lg">
             Dari Basecamp ke{" "}
