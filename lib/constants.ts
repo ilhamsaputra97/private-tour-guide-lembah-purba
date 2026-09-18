@@ -51,7 +51,7 @@ export const WHY_CARDS = [
 export const PRIVATE_PACKAGE = {
   variant: 'private' as const,
   title: 'Private Trip',
-  price: 'Rp350K/orang + Rp300K/rombongan',
+  price: 'Rp350K/orang + Fee Private Tour Guide (Rp300K/rombongan)',
   badge: 'RECOMMENDED',
   ctaLabel: 'Pilih Private Trip',
   featured: true,
