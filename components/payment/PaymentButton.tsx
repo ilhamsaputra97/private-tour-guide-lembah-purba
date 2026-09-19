@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { toast } from "sonner"
 
 declare global {
   interface Window {
@@ -34,16 +35,18 @@ export function PaymentButton({ formData, total, paymentOption }: PaymentButtonP
       }
 
       localStorage.setItem('rae_pending_order_id', data.orderId)
+      localStorage.setItem(`snap_token_${data.orderId}`, data.snapToken)
 
       window.snap.pay(data.snapToken, {
         onSuccess: () => {
+          localStorage.removeItem(`snap_token_${data.orderId}`)
           window.location.reload()
         },
         onPending: () => {
           window.location.reload()
         },
         onError: () => {
-          alert("Pembayaran gagal, coba lagi ya.")
+          toast.error("Pembayaran gagal, coba lagi ya.")
           setIsLoading(false)
         },
         onClose: async () => {

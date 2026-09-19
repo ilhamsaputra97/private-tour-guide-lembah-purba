@@ -7,6 +7,7 @@ import { PaymentStatusBadge, type PaymentStatus } from "@/components/payment/Pay
 import { formatRupiah } from "@/lib/utils"
 import { buildWaLink } from "@/lib/wa"
 import { Clock, XCircle } from "lucide-react"
+import { toast } from "sonner"
 
 export function PendingPaymentCard({
   orderId,
@@ -127,12 +128,34 @@ export function PendingPaymentCard({
 
       <div className="flex flex-col gap-3">
         {status === "pending" && (
-          <button
-            onClick={fetchStatus}
-            className="w-full rounded-full border border-charcoal/20 py-4 font-semibold text-charcoal transition-colors hover:bg-charcoal/5"
-          >
-            Cek Status Sekarang
-          </button>
+          <>
+            <button
+              onClick={() => {
+                const token = localStorage.getItem(`snap_token_${orderId}`)
+                if (token && window.snap) {
+                  window.snap.pay(token, {
+                    onSuccess: () => {
+                      localStorage.removeItem(`snap_token_${orderId}`)
+                      fetchStatus()
+                    },
+                    onPending: () => fetchStatus(),
+                    onError: () => toast.error("Pembayaran gagal, silakan coba lagi.")
+                  })
+                } else {
+                  toast.error("Sesi pembayaran telah kedaluwarsa. Silakan cek email Anda untuk instruksi pembayaran dari Midtrans, atau chat admin.")
+                }
+              }}
+              className="w-full rounded-full bg-charcoal py-4 font-semibold text-sand transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Lanjutkan Pembayaran
+            </button>
+            <button
+              onClick={fetchStatus}
+              className="w-full rounded-full border border-charcoal/20 py-4 font-semibold text-charcoal transition-colors hover:bg-charcoal/5"
+            >
+              Cek Status Sekarang
+            </button>
+          </>
         )}
         <a
           href={waLink}

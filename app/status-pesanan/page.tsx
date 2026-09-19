@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation"
 import { Suspense, useEffect, useState } from "react"
 import Link from "next/link"
 import { ButtonRA } from "@/components/shared/ButtonRA"
+import { toast } from "sonner"
 
 function StatusContent() {
   const [bookingData, setBookingData] = useState<any>(null)
@@ -93,22 +94,22 @@ function StatusContent() {
       </div>
 
       <div className="mt-10 rounded-[18px] border border-charcoal/10 bg-white p-6 shadow-[0_2px_20px_rgba(0,0,0,0.03)] md:p-10">
-        <div className="mb-6 flex items-center justify-between border-b border-charcoal/10 pb-6">
+        <div className="mb-6 flex flex-col gap-3 border-b border-charcoal/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold tracking-wider text-charcoal/50 uppercase">Order ID</p>
-            <p className="font-mono text-lg font-medium text-charcoal mt-1">{order_id}</p>
+            <p className="font-mono text-base font-medium text-charcoal mt-1 break-all sm:text-lg">{order_id}</p>
           </div>
-          <div className="text-right">
+          <div>
             {payment_status === "settlement" || payment_status === "capture" ? (
-              <span className="inline-block rounded-full bg-emerald-600/10 px-3 py-1 text-xs sm:text-sm font-medium text-emerald-700 border border-emerald-600/20">
+              <span className="inline-block rounded-full bg-emerald-600/10 px-3 py-1 text-xs font-medium text-emerald-700 border border-emerald-600/20 sm:text-sm">
                 Lunas (Settlement)
               </span>
             ) : payment_status === "pending" ? (
-              <span className="inline-block rounded-full bg-amber-500/10 px-3 py-1 text-xs sm:text-sm font-medium text-amber-700 border border-amber-500/20">
+              <span className="inline-block rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-700 border border-amber-500/20 sm:text-sm">
                 Menunggu Pembayaran
               </span>
             ) : (
-              <span className="inline-block rounded-full bg-red-500/10 px-3 py-1 text-xs sm:text-sm font-medium text-red-700 border border-red-500/20">
+              <span className="inline-block rounded-full bg-red-500/10 px-3 py-1 text-xs font-medium text-red-700 border border-red-500/20 sm:text-sm">
                 {payment_status || "Batal / Kedaluwarsa"}
               </span>
             )}
@@ -136,14 +137,53 @@ function StatusContent() {
           </div>
         </div>
 
-        <div className="rounded-xl bg-sand p-5 text-sm text-charcoal/80 border border-charcoal/5">
-          <p className="font-semibold text-charcoal flex items-center gap-2">
-            <span>📝</span> Catatan Guide:
-          </p>
-          <p className="mt-2 leading-relaxed">
-            "Terima kasih sudah memesan! Guide Anda (Ilham Saputra) akan menghubungi nomor WhatsApp Anda H-1 sebelum keberangkatan untuk briefing perlengkapan. Jika ada pantangan makanan untuk tim Anda, silakan hubungi kami."
-          </p>
-        </div>
+        {payment_status === "pending" ? (
+          <div className="rounded-xl bg-amber-50 p-5 text-sm border border-amber-200">
+            <p className="font-semibold text-amber-800 flex items-center gap-2">
+              <span>⚠️</span> Menunggu Pembayaran
+            </p>
+            <p className="mt-2 leading-relaxed text-amber-700">
+              Pesanan Anda sudah tercatat namun masih menunggu pembayaran diselesaikan. Silakan selesaikan pembayaran agar jadwal trip Anda bisa dikonfirmasi oleh Guide.
+            </p>
+            <div className="mt-4">
+              <ButtonRA variant="primary" onClick={() => {
+                const token = localStorage.getItem(`snap_token_${order_id}`)
+                if (token && window.snap) {
+                  window.snap.pay(token, {
+                    onSuccess: () => {
+                      localStorage.removeItem(`snap_token_${order_id}`)
+                      window.location.reload()
+                    },
+                    onPending: () => window.location.reload(),
+                    onError: () => toast.error("Pembayaran gagal, silakan coba lagi.")
+                  })
+                } else {
+                  toast.error("Sesi pembayaran telah kedaluwarsa atau tidak ditemukan. Silakan cek email Anda untuk instruksi pembayaran dari Midtrans, atau hubungi admin.")
+                }
+              }}>
+                Lanjutkan Pembayaran
+              </ButtonRA>
+            </div>
+          </div>
+        ) : payment_status === "settlement" || payment_status === "capture" ? (
+          <div className="rounded-xl bg-emerald-50 p-5 text-sm text-emerald-900 border border-emerald-200">
+            <p className="font-semibold flex items-center gap-2">
+              <span>📝</span> Catatan Guide:
+            </p>
+            <p className="mt-2 leading-relaxed">
+              "Terima kasih sudah memesan! Guide Anda (Ilham Saputra) akan menghubungi nomor WhatsApp Anda H-1 sebelum keberangkatan untuk briefing perlengkapan. Jika ada pantangan makanan untuk tim Anda, silakan hubungi kami."
+            </p>
+          </div>
+        ) : (
+          <div className="rounded-xl bg-red-50 p-5 text-sm text-red-900 border border-red-200">
+            <p className="font-semibold flex items-center gap-2">
+              <span>❌</span> Pesanan Dibatalkan / Kedaluwarsa
+            </p>
+            <p className="mt-2 leading-relaxed">
+              Batas waktu pembayaran telah habis atau pesanan ini dibatalkan. Silakan lakukan pemesanan ulang dari beranda jika Anda masih ingin menjadwalkan trip.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="mt-10 flex justify-center">
