@@ -32,6 +32,7 @@ export const metadata: Metadata = {
 }
 
 import { Navbar, Footer } from "@/components/layout"
+import { Toaster } from "@/components/ui/sonner"
 
 export default function RootLayout({
   children,
@@ -47,6 +48,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <Toaster />
         <Script
           src={
             process.env.MIDTRANS_IS_PRODUCTION === "true"
