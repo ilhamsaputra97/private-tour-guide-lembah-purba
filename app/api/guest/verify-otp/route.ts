@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       .from("bookings")
       .select("*")
       .eq("email", email)
-      .order("id", { ascending: false })
+      .order("created_at", { ascending: false })
       .limit(1)
 
     if (bookingError || !bookings || bookings.length === 0) {
