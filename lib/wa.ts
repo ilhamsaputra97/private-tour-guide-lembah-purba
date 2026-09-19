@@ -18,11 +18,11 @@ interface WaLinkParams {
 export function buildWaLink(params: WaLinkParams): string {
   const { nama, wa, jumlah, tanggal, paket, total, catatan } = params
 
-  const dateStr = typeof tanggal === "string" 
-    ? tanggal 
+  const dateStr = typeof tanggal === "string"
+    ? tanggal
     : format(tanggal, "EEEE, dd MMMM yyyy", { locale: id })
 
-  const text = `Halo Admin Rimba Awal, saya mau konfirmasi pembayaran booking:
+  const text = `Halo Admin Private Tour Guide Lembah Purba Expedition, saya mau konfirmasi pembayaran booking:
 
 *Nama:* ${nama}
 *No WA:* ${wa}
